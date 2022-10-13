@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head'); %>
+</head>
+<body class="container">
+
+<header>
+  <%- include('../partials/header'); %>
+</header>
+
+
+
+
+    <form method="post">
+
+
+        <!-- CONTENT
+    ================================================== -->
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-12 col-md-6 offset-xl-2 offset-md-1 order-md-2 mb-5 mb-md-0">
+
+          <!-- Image -->
+          <div class="text-center">
+                        <img src="../images/shutterstock_1546408049.jpg" alt="..." class="img-fluid">
+
+          </div>
+
+        </div>
+        <div class="col-12 col-md-5 col-xl-4 order-md-1 my-5">
+
+          <!-- Heading -->
+          <h1 class="display-4 text-center mb-3">
+            Sign up
+          </h1>
+
+          <!-- Subheading -->
+          <p class="text-muted text-center mb-5">
+            A free easy to use tool for sending a positive message.
+          </p>
+
+          <!-- Form -->
+          <form>
+
+            <!-- Email address -->
+            <div class="form-group">
+
+              <!-- Label -->
+              <label class="form-label">
+                Email Address
+              </label>
+
+              <!-- Input -->
+              <input type="email"  name="email"  class="form-control" placeholder="name@address.com" required>
+
+
+            </div>
+
+                 <!-- Username -->
+            <div class="form-group">
+
+              <!-- Label -->
+              <label class="form-label">
+                Username
+              </label>
+
+              <!-- Input -->
+     
+                      <input type="text" name="username" class="form-control" placeholder="Username" required>
+
+
+            </div>
+
+            <!-- Password -->
+            <div class="form-group">
+
+              <!-- Label -->
+              <label class="form-label">
+                Password
+              </label>
+
+              <!-- Input group -->
+              <div class="input-group input-group-merge">
+
+                <!-- Input -->
+                    <input class="form-control" name="password" id="password" type="password"  placeholder="Password" required/>
+
+             
+
+              </div>
+
+            </div>
+
+                      <!-- Confirm Password -->
+            <div class="form-group">
+
+              <!-- Label -->
+              <label class="form-label">
+                 Confirm Password:<br>
+              </label>
+
+              <!-- Input group -->
+              <div class="input-group input-group-merge">
+
+                <!-- Input -->
+                <input class="form-control" type="password" name="confirm_password" placeholder="Password"   id="confirm_password"required required />
+
+              
+
+              </div>
+
+            </div>
+             <span id='message'></span>
+
+                   
+
+
+
+
+
+
+
+
+
+            <!-- Submit -->
+            <input type="submit" class="btn btn-lg w-100 btn-primary mb-3" value="Sign up" id="btnCreate" disabled>
+            
+
+
+            <!-- Link -->
+            <div class="text-center">
+              <small class="text-muted text-center">
+                Already have an account? <a href="sign-in-illustration.html">Log in</a>.
+              </small>
+            </div>
+
+          </form>
+
+        </div>
+      </div> <!-- / .row -->
+    </div> <!-- / .container -->
+
+
+
+
+
+     
+
+
+
+    </form>
+           
+
+<footer>
+  <%- include('../partials/footer'); %>
+</footer>
+
+</body>
+</html>
+
+<script type="text/javascript">
+$('#password, #confirm_password').on('keyup', function () {
+    if ($('#password').val() == $('#confirm_password').val()) {
+        $('#message').html('Matching').css('color', 'green');
+            $("#btnCreate").attr('disabled', false);
+
+
+    } else {
+            $('#message').html('Not Matching').css('color', 'red');
+               $("#btnCreate").attr("disabled", 'disabled');
+
+    }
+});
+</script>

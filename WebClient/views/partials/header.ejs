@@ -1,0 +1,60 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/index"> <i class="fa-solid fa-p fa-2x"></i></a>
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item">
+      <a class="nav-link" href="/index">Home</a>
+    </li>
+   <!-- <li class="nav-item">
+      <a class="nav-link" href="/courses">Courses</a>
+    </li> 
+    <li class="nav-item">
+      <a class="nav-link" href="/subscribers">Subscribers</a>
+    </li>-->
+        <li class="nav-item">
+      <a class="nav-link" href="/sendmessage">Send A Message</a>
+    </li>
+            <li class="nav-item">
+      <a class="nav-link" href="/sentmessages">Sent Messages</a>
+    </li>
+      <!-- <li class="nav-item">
+        <% if (loggedIn) { %>
+    <a class="nav-link" href="/dashboard">Dashboard</a>
+  <%} else {%>
+  <% } %>
+    </li> -->
+       <!-- <li class="nav-item">
+      <a class="nav-link" href="/contact">Contact</a>
+    </li> -->
+    <li class="nav-item">
+      <a class="nav-link" href="/about">About</a>
+    </li>
+  </ul>
+      <span class="navbar-text">
+
+
+       <div class="login">
+  <% if (loggedIn) { %>
+    <p>Logged in as
+      <a href="<%=`/users/${currentUser._id}`%>">
+  <%= currentUser.username %></a>
+      <a href="/logout">Log out</a>
+    </p>
+  <%} else {%>
+    <a href="/login">Please Login Here!</a>
+  <% } %>
+</div>
+      </span>
+    </div>
+  </div>
+</nav>
+
+
+<div class="flashes">
+<% if (flashMessages) { %>
+  <% if (flashMessages.success) { %>
+    <div class="flash success"><%= flashMessages.success %></div>
+  <% } else if (flashMessages.error) { %>
+    <div class="flash error"><%= flashMessages.error %></div>  <% } %>
+<% } %>
+</div>
