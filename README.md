@@ -30,4 +30,4 @@
  -- npm start
  * Runs the app in the development mode.
 
-Runs on port 3000, you can port in the main.js file. Open http://localhost:3000 to view it in the browser.
+Runs on port 3000, you can change port in the main.js file. Open http://localhost:3000 to view application in the browser.
