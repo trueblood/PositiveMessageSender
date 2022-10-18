@@ -1,7 +1,7 @@
 # PositiveMessageSender
 
 ## About Positive Message Sender
- Positive Message Sender is an for easily sending a positive message to a friend and loved one. This Node JS MVC web application uses the Courier API for message delivery. The API delivers both an email and a text message depending on what message format picked by the sender.
+ Positive Message Sender is for easily sending a positive message to a friend and loved one. This Node JS MVC web application uses the Courier API for message delivery. The API delivers both an email and a text message depending on what message format picked by the sender.
 
 ## List of technologies
   * Courier API
@@ -20,7 +20,9 @@
 
 ## Ways for other developers to contribute
 * Setup subscriptions so messages are auto generated daily to signed up users. To do this I'll need to setup a service running on a server or use a service like Hangfire. 
-* Also want to setup a user dashboard so they can change their user password and see their sent messages from their account and modify the daily generated messages turn off and use an api to pull in holidays and make the positive message have something to do with the day's holiday. 
+* Also want to setup a user dashboard so they can change their user password and see their sent messages from their account 
+* From the dashboard modify the daily generated messages
+* Use an api to pull in holidays and make the positive message have something to do with the day's holiday. 
 * Also need to implement captcha.
 
 ## Run Locally
