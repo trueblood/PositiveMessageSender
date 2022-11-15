@@ -1,5 +1,5 @@
 const User = require('../models/user'),
-    messageController = require('../controllers/messageController');
+    messageController = require('./messageController');
 
 exports.login = (req, res) => {
     res.render("users/login");

@@ -78,7 +78,7 @@ app.get('/logout', function (req, res, next) {
 const homeController = require("./controllers/homeController");
 const errorController = require("./controllers/errorController")
 const messageController = require("./controllers/messageController");
-const usersController = require("./controllers/usersController");
+const userController = require("./controllers/userController");
 
 // Post Route: /login
 app.post('/login', passport.authenticate('local', { failureRedirect: '/index' }), function (req, res) {
@@ -99,9 +99,9 @@ app.post("/contact", homeController.postedSignUpForm);
 
 app.get("/thanks", homeController.postedSignUpForm);
 
-app.get("/login", usersController.login);
-app.get("/create", usersController.showCreate);
-app.post("/create", usersController.create);
+app.get("/login", userController.login);
+app.get("/create", userController.showCreate);
+app.post("/create", userController.create);
 
 app.use(errorController.pageNotFoundError);
 app.use(errorController.internalServerError);
