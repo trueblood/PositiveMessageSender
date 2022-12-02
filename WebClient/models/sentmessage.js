@@ -1,6 +1,6 @@
 // schema is the set of rules
 const mongoose = require("mongoose"),
-    sentMessageSchedma = mongoose.Schema({
+    sentMessageSchema = mongoose.Schema({
         name: String,
         from: String,
         email: String,
@@ -11,6 +11,6 @@ const mongoose = require("mongoose"),
     });
 
 module.exports = mongoose.model("SentMessage",
-    sentMessageSchedma);
+    sentMessageSchema);
 
 

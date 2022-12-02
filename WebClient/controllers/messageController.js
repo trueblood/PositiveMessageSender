@@ -1,10 +1,12 @@
-const Message = require("../models/message");
+// required
 const SentMessage = require("../models/sentmessage");
 
+// show sendmessage page
 exports.showSendMessage = (req, res) => {
     res.render("sendmessage");
 };
 
+// save the sent message to the database
 exports.saveSendMessage = (req, res) => {
     let newMessage = new SentMessage({
         name: req.body.name,
@@ -27,6 +29,7 @@ exports.saveSendMessage = (req, res) => {
     this.sendMessage(newMessage.email, newMessage.message, newMessage.phoneNumber);
 };
 
+// method that shows sent messages
 exports.showSentMessages = (req, res) => {
     SentMessage.find({})
         .exec()
@@ -44,24 +47,7 @@ exports.showSentMessages = (req, res) => {
         });
 };
 
-exports.showUserSentMessages = (req, res) => {
-    SentMessage.find({ username: req.user})
-        .exec()
-        .then((sentmessages) => {
-            res.render("sentmessages", {
-                sentmessages: sentmessages
-            });
-        })
-        .catch((error) => {
-            console.log(error.message);
-            return [];
-        })
-        .then(() => {
-            console.log("promise complete");
-        });
-};
-
-
+// method that sends a message to the user. either email or text
 exports.sendMessage = async function sendMessage(sendToEmail, message, phoneNumber) {
     // Dependencies to install:
     // $ npm install node-fetch --save
@@ -73,7 +59,7 @@ exports.sendMessage = async function sendMessage(sendToEmail, message, phoneNumb
         headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
-            Authorization: ''
+            Authorization: 'Bearer ' + process.env.COURIERAPIKEY
         },
         body: JSON.stringify({
             "message": {
@@ -99,6 +85,7 @@ exports.sendMessage = async function sendMessage(sendToEmail, message, phoneNumb
         .catch(err => console.error(err));
 }
 
+// send a notification to the user when they sign up
 exports.sendSignUpMessage = async function sendSignUpMessage(sendToEmail) {
     // Dependencies to install:
     // $ npm install node-fetch --save
@@ -110,7 +97,7 @@ exports.sendSignUpMessage = async function sendSignUpMessage(sendToEmail) {
         headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
-            Authorization: ''
+            Authorization: 'Bearer ' + process.env.COURIERAPIKEY
         },
         body: JSON.stringify({
             "message": {
@@ -129,6 +116,7 @@ exports.sendSignUpMessage = async function sendSignUpMessage(sendToEmail) {
         .catch(err => console.error(err));
 }
 
+// send a notification to the user when they log in
 exports.sendLoginMessage = async function sendLoginMessage(sendToEmail) {
     // Dependencies to install:
     // $ npm install node-fetch --save
@@ -140,7 +128,7 @@ exports.sendLoginMessage = async function sendLoginMessage(sendToEmail) {
         headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
-            Authorization: ''
+            Authorization: 'Bearer ' + process.env.COURIERAPIKEY
         },
         body: JSON.stringify({
             "message": {

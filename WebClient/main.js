@@ -1,14 +1,21 @@
+// required
 const express = require("express"),
-    app = express();
+    app = express(),
+	dotenv = require("dotenv"),
+	ejs = require("ejs")
 const flash = require('connect-flash');
 
-
+// initiate dotenv to load environment variables
+dotenv.config();
+// set the port number
 app.set("port", process.env.PORT || 3000);
 
+// get the index page at /
 app.get("/", (req, res) => {
     res.render("index");
 });
 
+// display a message to user in the terminal window on what port the application is running on
 app.listen(app.get("port"), () => {
     console.log(
         `Server running at http://localhost:${app.get(
@@ -16,6 +23,7 @@ app.listen(app.get("port"), () => {
         )}`
     );
 });
+
 
 app.use(
     express.urlencoded({
@@ -34,7 +42,7 @@ const User = require('./models/user.js'); // User Model
 
 // Configure Sessions Middleware
 app.use(session({
-	secret: '',
+	secret: `${process.env.SECRET}`,
 	resave: false,
 	saveUninitialized: true,
 	cookie: { maxAge: 60 * 60 * 1000 } // 1 hour
@@ -59,10 +67,12 @@ app.use((req, res, next) => {
 // Configure Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 
+// dashboard page
 app.get('/dashboard', connectEnsureLogin.ensureLoggedIn(), (req, res) => {
 	res.render("dashboard");
 });
 
+// send message page
 app.get('/sendmessage', connectEnsureLogin.ensureLoggedIn(), (req, res) => {
 	res.render("sendmessage");
 });
@@ -75,6 +85,7 @@ app.get('/logout', function (req, res, next) {
 	});
 });
 
+// define my controllers here
 const homeController = require("./controllers/homeController");
 const errorController = require("./controllers/errorController")
 const messageController = require("./controllers/messageController");
@@ -87,22 +98,14 @@ app.post('/login', passport.authenticate('local', { failureRedirect: '/index' })
 	res.redirect('sendmessage');
 });
 
-//app.get("/sendmessage", messageController.showSendMessage);
 app.get("/sentmessages", messageController.showSentMessages);
 app.post("/sendmessage", messageController.saveSendMessage);
-
-app.get("/courses", homeController.showCourses);
-app.get("/contact", homeController.showSignUp);
 app.get("/index", homeController.showIndex);
 app.get("/about", homeController.showAbout);
-app.post("/contact", homeController.postedSignUpForm);
-
 app.get("/thanks", homeController.postedSignUpForm);
-
 app.get("/login", userController.login);
 app.get("/create", userController.showCreate);
 app.post("/create", userController.create);
-
 app.use(errorController.pageNotFoundError);
 app.use(errorController.internalServerError);
 
@@ -110,13 +113,16 @@ const layouts = require("express-ejs-layouts");
 app.set("view engine", "ejs");
 app.use(layouts);
 
-const uri = "";
+
+
+const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@clusterzone.qvfg7gm.mongodb.net/?retryWrites=true&w=majority`;
 const mongoose = require("mongoose");
 mongoose.connect(
     uri,
     { useNewUrlParser: true }
 );
 
+// show the user i'm connected to the mongodb in the terminal window
 const db = mongoose.connection;
 db.once("open", () => {
     console.log("Successfully connected to MongoDB using Mongoose!");

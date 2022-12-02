@@ -1,14 +1,18 @@
+// required
 const User = require('../models/user'),
     messageController = require('./messageController');
 
+    // login page
 exports.login = (req, res) => {
     res.render("users/login");
 }
 
+    // show users created successfully page
 exports.showCreate = (req, res) => {
     res.render("users/create");
 }
 
+// method that creates a new user and saves it to the database
 exports.create = (req, res, next) => {
     if (req.skip) return next();
 
