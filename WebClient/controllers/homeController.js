@@ -1,9 +1,3 @@
-
-exports.showCourses = (req, res) => {
-    res.render("courses", {
-        offeredCourses: courses
-    });
-};
 exports.showSignUp = (req, res) => {
     res.render("contact");
 };
