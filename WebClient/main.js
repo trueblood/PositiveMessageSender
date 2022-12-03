@@ -24,7 +24,7 @@ app.listen(app.get("port"), () => {
     );
 });
 
-
+// The express.urlencoded() function is a built-in middleware function in Express. It parses incoming requests with urlencoded payloads and is based on body-parser
 app.use(
     express.urlencoded({
         extended: false
@@ -67,22 +67,24 @@ app.use((req, res, next) => {
 // Configure Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// dashboard page
-app.get('/dashboard', connectEnsureLogin.ensureLoggedIn(), (req, res) => {
-	res.render("dashboard");
-});
-
-// send message page
-app.get('/sendmessage', connectEnsureLogin.ensureLoggedIn(), (req, res) => {
-	res.render("sendmessage");
-});
-
-// Route to Log out
-app.get('/logout', function (req, res, next) {
-	req.logout(function (err) {
-		if (err) { return next(err); }
-		res.redirect('/index');
+	// send message page, ensure that user is logged in
+	app.get('/sendmessage', connectEnsureLogin.ensureLoggedIn(), (req, res) => {
+		res.render("sendmessage");
 	});
+
+	// Route to Log out
+	app.get('/logout', function (req, res, next) {
+		req.logout(function (err) {
+			if (err) { return next(err); }
+			res.redirect('/index');
+		});
+	});
+
+	// Post Route: /login
+app.post('/login', passport.authenticate('local', { failureRedirect: '/index' }), function (req, res) {
+	console.log(req.user)
+	messageController.sendLoginMessage(req.user.email);
+	res.redirect('sendmessage');
 });
 
 // define my controllers here
@@ -90,13 +92,6 @@ const homeController = require("./controllers/homeController");
 const errorController = require("./controllers/errorController")
 const messageController = require("./controllers/messageController");
 const userController = require("./controllers/userController");
-
-// Post Route: /login
-app.post('/login', passport.authenticate('local', { failureRedirect: '/index' }), function (req, res) {
-	console.log(req.user)
-	messageController.sendLoginMessage(req.user.email);
-	res.redirect('sendmessage');
-});
 
 app.get("/sentmessages", messageController.showSentMessages);
 app.post("/sendmessage", messageController.saveSendMessage);
@@ -109,12 +104,13 @@ app.post("/create", userController.create);
 app.use(errorController.pageNotFoundError);
 app.use(errorController.internalServerError);
 
+// define view engine here
 const layouts = require("express-ejs-layouts");
 app.set("view engine", "ejs");
 app.use(layouts);
 
 
-
+// here we setup our database connection
 const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@clusterzone.qvfg7gm.mongodb.net/?retryWrites=true&w=majority`;
 const mongoose = require("mongoose");
 mongoose.connect(

@@ -1,51 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <%- include('./partials/head'); %>
-   </head>
-   <body class="container">
-      <header>
-         <%- include('./partials/header'); %>
-      </header>
-      <div class="row">
-            <div class="col-md-3">
-            <div class="d-flex justify-content-center">
-                           <img src="../images/shutterstock_1922868026.jpg" alt="..." class="img-fluid">
 
-            </div>
-         </div>
-         <div class="col-md-6">
-            <div class="d-flex justify-content-center" style="padding-top:20%">
-               <h1>Sent Positive Messages</h1>
-            </div>
-         </div>
-               <div class="col-md-3">
-            <div class="d-flex justify-content-center">
-                           <img src="../images/shutterstock_1788801392.jpg" alt="..." class="img-fluid">
+<head>
+   <%- include('./partials/head'); %>
+</head>
 
-            </div>
+<body class="container">
+   <header>
+      <%- include('./partials/header'); %>
+   </header>
+   <div class="row">
+      <div class="col-md-3">
+         <div class="d-flex justify-content-center">
+            <img src="../images/shutterstock_1922868026.jpg" alt="..." class="img-fluid">
+
          </div>
       </div>
-          <hr class="my-5">
-      <div class="row">
-         <div class="col-md-12">
-            <% sentmessages.forEach(s => {%>
+      <div class="col-md-6">
+         <div class="d-flex justify-content-center" style="padding-top:20%">
+            <h1>Sent Positive Messages</h1>
+         </div>
+      </div>
+      <div class="col-md-3">
+         <div class="d-flex justify-content-center">
+            <img src="../images/shutterstock_1788801392.jpg" alt="..." class="img-fluid">
+
+         </div>
+      </div>
+   </div>
+   <hr class="my-5">
+   <div class="row">
+      <div class="col-md-12">
+         <% sentmessages.forEach(s=> {%>
             <div class="card">
                <div class="card-header">
                   <%= s.date %>
                </div>
                <div class="card-body">
                   <blockquote class="blockquote mb-0">
-                     <p><%= s.message %></p>
-                     <footer class="blockquote-footer">Sent By <cite title="Source Title"><%= s.from %></cite></footer>
+                     <p>
+                        <%= s.message %>
+                     </p>
+                     <footer class="blockquote-footer">Sent By <cite title="Source Title">
+                           <%= s.from %>
+                        </cite></footer>
                   </blockquote>
                </div>
             </div>
-            <% })%> 
-         </div>
+            <% })%>
       </div>
-      <footer>
-         <%- include('./partials/footer'); %>
-      </footer>
-   </body>
+   </div>
+   <footer>
+      <%- include('./partials/footer'); %>
+   </footer>
+</body>
+
 </html>

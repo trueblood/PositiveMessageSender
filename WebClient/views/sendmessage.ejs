@@ -1,197 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <%- include('./partials/head'); %>
-   </head>
-   <body class="container">
-      <header>
-         <%- include('./partials/header'); %>
-      </header>
-      <br/>
-      <div class="row">
-         <div class="col-md-12">
-            <div class="d-flex justify-content-center">
 
-                                   <!-- Title -->
-                    <h1 class="mb-3" id="topMessage">
-                      Let&apos;s Send a Positive Uplifting Email Message
-                    </h1>
+<head>
+  <%- include('./partials/head'); %>
+</head>
 
-              
-            </div>
-         </div>
+<body class="container">
+  <header>
+    <%- include('./partials/header'); %>
+  </header>
+  <br />
+  <div class="row">
+    <div class="col-md-12">
+      <div class="d-flex justify-content-center">
+
+        <!-- Title -->
+        <h1 class="mb-3" id="topMessage">
+          Let&apos;s Send a Positive Uplifting Email Message
+        </h1>
+
+
       </div>
-      <div class="row">
-         <div class="col-md-12">
-            <div class="d-flex justify-content-center">
-                     <!-- Subtitle -->
-                     <ul>
-                     <li>Sending a postive message is as easy as entering the recipient's info and clicking submit.</li>
-                     <li>Need help deciding on a postive message, no problem we'll generated one for you.</li>
-                     <li>Click the toggle switch to switch between sending an email or text</li>
-                                          <li>Click the generate more button for more.</li>
-
-                     </ul>
-                    <!-- <p class="mb-5 text-muted" style="text-align:center">
-                       Sending a postive message is as easy as entering the recipient's info and clicking submit. Can't think of a postive message, no problem we generated one for you. Click the generate more button for more.
-                    </p> -->
-            </div>
-         </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="d-flex justify-content-center">
+        <!-- Subtitle -->
+        <ul>
+          <li>Sending a postive message is as easy as entering the recipient's info and clicking submit.</li>
+          <li>Need help deciding on a postive message, no problem we'll generated one for you.</li>
+          <li>Click the toggle switch to switch between sending an email or text</li>
+          <li>Click the generate more button for more.</li>
+        </ul>
       </div>
-      <br/>
-      <br/>
-     <form action="/sendmessage" method="post">
-
-                  <div class="nav row align-items-center">
-                  <div class="col-auto">
-
-                  </div>
-                  <div class="col text-center">
-
-                    <!-- Step -->
-                    <h6 class="text-uppercase text-muted mb-0"></h6>
-
-                  </div>
-                  <div class="col-auto">
-                    <h5 id="flexSwitchInstructions">Click To Send Text</h5>
-                        <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                        <label class="form-check-label" for="flexSwitchCheckDefault" id="flexSwitch">Email</label>
-                    </div>
-                </div>
-  <div class="form-group">
-         <% if (loggedIn) { %>
-    <input type="hidden" id="username" name="username" value="<%= currentUser.username %>">
-  <%} else {%>
-  <% } %>
-
-
-    <input type="hidden" id="curDate" name="curDate" value="">
-    <label for="name">Positive Message To</label>
-    <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+    </div>
   </div>
-    <div class="form-group">
-    <label for="from">Positive Message From</label>
-      <% if (loggedIn) { %>
-        <input type="text" class="form-control" id="from" name="from" placeholder="Name" value="<%= currentUser.username %>">
+  <br />
+  <br />
+  <form action="/sendmessage" method="post">
 
-  <%} else {%>
-    <input type="text" class="form-control" id="from" name="from" placeholder="Name">
-  <% } %>
-  </div>
+    <div class="nav row align-items-center">
+      <div class="col-auto">
 
-  <div class="form-group showme">
-    <label for="email">Send Postive Message To</label>
-    <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Email Address">
-    <small id="emailHelp" class="form-text text-muted">We'll never share their email with anyone else.</small>
-  </div>
-  
-  <div class="form-group hideme" > 
-    <label for="phoneNumber">Send Postive Message To</label>
-    <input type="text" class="form-control" pattern="[0-9]{10}" id="phoneNumber" name="phoneNumber" placeholder="Phone Number">
-        <small id="phoneHelp" class="form-text text-muted">We'll never share their phone number with anyone else.</small>
-  </div>
-    <div class="form-group">
-    <label for="message">Positive Message</label>
-    <textarea class="form-control" id="message" name="message"rows="3" placeholder="Enter Message"></textarea>
-  </div>
-          <!-- Divider -->
-                <hr class="my-5">
-                                <div class="nav row align-items-center">
-                  <div class="col-auto">
+      </div>
+      <div class="col text-center">
 
-                    <!-- Button -->
-                    <button class="btn btn-lg btn-danger" type="reset">Clear</button>
-                    <button type="button" class="btn btn-lg btn-secondary" id="generateMessage">Generate Message</button>
+        <!-- Step -->
+        <h6 class="text-uppercase text-muted mb-0"></h6>
 
-                  </div>
-                  <div class="col text-center">
+      </div>
+      <div class="col-auto">
+        <h5 id="flexSwitchInstructions">Click To Send Text</h5>
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+          <label class="form-check-label" for="flexSwitchCheckDefault" id="flexSwitch">Email</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <% if (loggedIn) { %>
+          <input type="hidden" id="username" name="username" value="<%= currentUser.username %>">
+          <%} else {%>
+            <% } %>
 
-                    <!-- Step -->
-                    <h6 class="text-uppercase text-muted mb-0"></h6>
 
-                  </div>
-                  <div class="col-auto">
+              <input type="hidden" id="curDate" name="curDate" value="">
+              <label for="name">Positive Message To</label>
+              <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+      </div>
+      <div class="form-group">
+        <label for="from">Positive Message From</label>
+        <% if (loggedIn) { %>
+          <input type="text" class="form-control" id="from" name="from" placeholder="Name"
+            value="<%= currentUser.username %>">
 
-                    <!-- Button -->
-                    <button  type="submit" class="btn btn-lg btn-primary">Submit</button>
+          <%} else {%>
+            <input type="text" class="form-control" id="from" name="from" placeholder="Name">
+            <% } %>
+      </div>
 
-                  </div>
-                </div>
-</form> 
-      <footer>
-         <%- include('./partials/footer'); %>
-      </footer>
-   </body>
+      <div class="form-group showme">
+        <label for="email">Send Postive Message To</label>
+        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp"
+          placeholder="Email Address">
+        <small id="emailHelp" class="form-text text-muted">We'll never share their email with anyone else.</small>
+      </div>
+
+      <div class="form-group hideme">
+        <label for="phoneNumber">Send Postive Message To</label>
+        <input type="text" class="form-control" pattern="[0-9]{10}" id="phoneNumber" name="phoneNumber"
+          placeholder="Phone Number">
+        <small id="phoneHelp" class="form-text text-muted">We'll never share their phone number with anyone
+          else.</small>
+      </div>
+      <div class="form-group">
+        <label for="message">Positive Message</label>
+        <textarea class="form-control" id="message" name="message" rows="3" placeholder="Enter Message"></textarea>
+      </div>
+      <!-- Divider -->
+      <hr class="my-5">
+      <div class="nav row align-items-center">
+        <div class="col-auto">
+
+          <!-- Button -->
+          <button class="btn btn-lg btn-danger" type="reset">Clear</button>
+          <button type="button" class="btn btn-lg btn-secondary" id="generateMessage">Generate Message</button>
+
+        </div>
+        <div class="col text-center">
+
+          <!-- Step -->
+          <h6 class="text-uppercase text-muted mb-0"></h6>
+
+        </div>
+        <div class="col-auto">
+
+          <!-- Button -->
+          <button type="submit" class="btn btn-lg btn-primary">Submit</button>
+
+        </div>
+      </div>
+  </form>
+  <footer>
+    <%- include('./partials/footer'); %>
+  </footer>
+</body>
+
 </html>
 
 
 
 <script type="text/javascript">
-var courses = [
+  var courses = [
     {
-        id: 1,
-        message: "Positive anything is better than negative nothing.",
-        author: "- Elbert Hubbard"
+      id: 1,
+      message: "Positive anything is better than negative nothing.",
+      author: "- Elbert Hubbard"
     },
     {
-        id: 2,
-        message: "Miracles happen to those who believe in them.",
-        author: "- Bernhard Berenson"
+      id: 2,
+      message: "Miracles happen to those who believe in them.",
+      author: "- Bernhard Berenson"
     },
     {
-        id: 3,
-        message: "One small positive thought can change your whole day.",
-        author: "- Zig Ziglar"
+      id: 3,
+      message: "One small positive thought can change your whole day.",
+      author: "- Zig Ziglar"
     }
-];
+  ];
 
-$(document).ready(function() {
+  $(document).ready(function () {
     $("#curDate").val(getDateTime());
     $(".hideme").hide();
-});
+  });
 
-function getDateTime() {
+  function getDateTime() {
     const event = new Date();
     return event.toDateString();
-}
+  }
 
-$("#generateMessage").click(function() {
-  setGenearatedMessage();
-});
-
-function setGenearatedMessage() {
-      let arrayLength = courses.length;
-      let generatedMessageText = courses.at(getRandomInt(arrayLength));
-      $('#message').val(generatedMessageText.message + ' ' + generatedMessageText.author);
-}
-
-function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
-}
-
-
-document.addEventListener('DOMContentLoaded', function () {
-  var checkbox = document.querySelector('input[type="checkbox"]');
-
-  checkbox.addEventListener('change', function () {
-    if (checkbox.checked) {
-      $(".showme").hide();
-      $(".hideme").show();
-         $("#flexSwitch").text("Text");
-         $("#topMessage").text("Let's Send a Positive Uplifting Text Message");
-                  $("#flexSwitchInstructions").text("Click To Send Email");
-         
-    } else {
-      $(".showme").show();
-      $(".hideme").hide();
-            $("#flexSwitch").text("Email");
-            $("#topMessage").text("Let's Send a Positive Uplifting Email Message");
-                     $("#flexSwitchInstructions").text("Click To Send Text");
-   
-    }
+  $("#generateMessage").click(function () {
+    setGenearatedMessage();
   });
-});
+
+  function setGenearatedMessage() {
+    let arrayLength = courses.length;
+    let generatedMessageText = courses.at(getRandomInt(arrayLength));
+    $('#message').val(generatedMessageText.message + ' ' + generatedMessageText.author);
+  }
+
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
+
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var checkbox = document.querySelector('input[type="checkbox"]');
+
+    checkbox.addEventListener('change', function () {
+      if (checkbox.checked) {
+        $(".showme").hide();
+        $(".hideme").show();
+        $("#flexSwitch").text("Text");
+        $("#topMessage").text("Let's Send a Positive Uplifting Text Message");
+        $("#flexSwitchInstructions").text("Click To Send Email");
+
+      } else {
+        $(".showme").show();
+        $(".hideme").hide();
+        $("#flexSwitch").text("Email");
+        $("#topMessage").text("Let's Send a Positive Uplifting Email Message");
+        $("#flexSwitchInstructions").text("Click To Send Text");
+
+      }
+    });
+  });
 
 
 </script>

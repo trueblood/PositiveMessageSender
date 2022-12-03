@@ -1,20 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <%- include('../partials/head'); %>
 </head>
+
 <body class="container">
 
-<header>
-  <%- include('../partials/header'); %>
-</header>
-    <form method="post">
-
-           
-
-
-
- <!-- CONTENT
+  <header>
+    <%- include('../partials/header'); %>
+  </header>
+  <form method="post">
+    <!-- CONTENT
     ================================================== -->
     <div class="container">
       <div class="row align-items-center">
@@ -50,7 +47,7 @@
               </label>
 
               <!-- Input -->
-                <input type="text" name="username" class="form-control" placeholder="Username" required>
+              <input type="text" name="username" class="form-control" placeholder="Username" required>
             </div>
 
             <!-- Password -->
@@ -65,53 +62,31 @@
 
                 </div>
                 <div class="col-auto">
-
-                  <!-- Help text -->
-              <!--    <a href="password-reset-cover.html" class="form-text small text-muted">
-                    Forgot password?
-                  </a>-->
-
                 </div>
               </div> <!-- / .row -->
-
               <!-- Input group -->
               <div class="input-group input-group-merge">
-
                 <!-- Input -->
                 <input class="form-control" type="password" name="password" placeholder="Enter your password">
-
-
-
-
-
               </div>
             </div>
-
             <!-- Submit -->
             <input type="submit" class="btn btn-lg w-100 btn-primary mb-3" value=" Sign in">
-             
-
-
             <!-- Link -->
             <div class="text-center">
               <small class="text-muted text-center">
                 Don't have an account yet? <a href="/create ">Sign up</a>.
               </small>
             </div>
-
           </form>
-
         </div>
       </div> <!-- / .row -->
     </div> <!-- / .container -->
-        </form>
-
-
-
-
-<footer>
-  <%- include('../partials/footer'); %>
-</footer>
+  </form>
+  <footer>
+    <%- include('../partials/footer'); %>
+  </footer>
 
 </body>
+
 </html>
